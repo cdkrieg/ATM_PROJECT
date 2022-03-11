@@ -1,6 +1,9 @@
 "use strict"
 
+const {PIN, balance} = require("./account.js");
+
 function getBalance(){
+    return balance;
 
 }
 
@@ -13,8 +16,7 @@ function deposit(){
 }
 
 function validatePin(input){
-    let pin = 2029;
-    if(input == pin){
+    if(parseInt(input) === PIN){
         return true;
     } else {
         return false;
