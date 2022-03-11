@@ -6,12 +6,13 @@ function welcome(){
     console.clear();
     console.log("Welcome to the Senior Chief Banking System!");
     let pin = promptForPIN('Please enter your PIN to continue: ', validatePin);
-    console.log("Your PIN has been accepted!");
+    console.log("\nYour PIN has been accepted!\n\n");
     atmSelection();
 }
 
 function atmSelection(){
-    let selection = promptFor("Please select from the following options: \n<1> Check Account Balance \n<2> Withdrawal \n<3> Deposit \n<4> Done\n", numberValidation);
+    console.log("Please select from the following options: \n<1> Check Account Balance \n<2> Withdrawal \n<3> Deposit");
+    let selection = promptFor("<4> Done", numberValidation);
     switch (selection){
         case "1":
             console.clear();
@@ -48,7 +49,7 @@ function promptFor(question, valid) {
   function promptForPIN(question, valid) {
     let isValid;
     do {
-      var response = prompt(question, {echo: '*'});
+      var response = prompt(question, {echo: "*"});
       if (response !== null) {
         response.trim();
       }
