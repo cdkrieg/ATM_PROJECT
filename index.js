@@ -1,6 +1,7 @@
 "use strict"
 const prompt = require('prompt-sync')();
 const {validatePin, withdraw, getBalance, deposit} = require('./atm');
+const { money } = require('./wallet');
 
 function welcome(){
 
@@ -12,8 +13,8 @@ function welcome(){
 }
 
 function atmSelection(){
-    console.log("Please select from the following options: \n<1> Check Account Balance \n<2> Withdrawal \n<3> Deposit");
-    let selection = promptFor("<4> Done  ", choiceValidation);
+    console.log("Please select from the following options: \n<1> Check Account Balance \n<2> Withdrawal \n<3> Deposit  \n<4> Check Wallet ");
+    let selection = promptFor("<5> Done  ", choiceValidation);
     switch (selection){
         case "1":
             console.clear();
@@ -46,6 +47,10 @@ function atmSelection(){
             setTimeout(function() {atmSelection()}, 2000);
             break;
         case "4":
+            console.clear();
+            console.log(`You currently have $${money.toFixed(2)} in your wallet\n`)
+            break;
+        case "5":
             console.log("Thank you for using the Senior Chief Banking System! \nHave a great day!\n ")
             break;
         default:
@@ -79,7 +84,7 @@ function promptFor(question, valid) {
   }
 
   function choiceValidation(input){
-      if(parseInt(input) > 0 && parseInt(input) < 5){
+      if(parseInt(input) > 0 && parseInt(input) <= 5){
         return true;
       } else {
           return false;
