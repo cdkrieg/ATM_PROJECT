@@ -2,6 +2,7 @@
 
 var {PIN, balance} = require("./account.js");
 var {money} = require("./wallet.js");
+let count = 3;
 
 function getBalance(){
     return balance;
@@ -38,7 +39,13 @@ function deposit(input){
 function validatePin(input){
     if(parseInt(input) === PIN){
         return true;
+    } else if(count === 0){
+        console.clear();
+        console.log("You have exceeded the maximum number of attempts! \nThank you for using the Senior Chief Banking System.");
+        return process.exit();
     } else {
+        count--;
+        console.log("\nInvalid PIN\n");
         return false;
     }
 }
