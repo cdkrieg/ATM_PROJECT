@@ -3,6 +3,7 @@ const prompt = require('prompt-sync')();
 const {validatePin, withdraw, getBalance, deposit} = require('./atm');
 
 function welcome(){
+
     console.clear();
     console.log("Welcome to the Senior Chief Banking System!");
     let pin = promptForPIN('Please enter your PIN to continue: ', validatePin);
@@ -12,7 +13,7 @@ function welcome(){
 
 function atmSelection(){
     console.log("Please select from the following options: \n<1> Check Account Balance \n<2> Withdrawal \n<3> Deposit");
-    let selection = promptFor("<4> Done", numberValidation);
+    let selection = promptFor("<4> Done  ", choiceValidation);
     switch (selection){
         case "1":
             console.clear();
@@ -21,10 +22,28 @@ function atmSelection(){
             setTimeout(function() {atmSelection()}, 2000);
             break;
         case "2":
+            console.clear();
+            let withdrawAmount = promptFor("Please enter the amount to withdraw (in multiples of $10): $", numberValidation);
+            let getMoney = withdraw(parseInt(withdrawAmount));
+            if(getMoney){
+                console.log("Please remove your bills below\n");
+            } else {
+                console.log("Insufficient Funds\n");
 
+            }
+            setTimeout(function() {atmSelection()}, 2000);
             break;
         case "3":
+            console.clear();
+            let depositAmount = promptFor("Please enter the amount to deposit: $", numberValidation);
+            let giveMoney = deposit(parseFloat(depositAmount));
+            if(giveMoney){
+                console.log("Your money has been deposited and funds are immediately available\n");
+            } else {
+                console.log("Your money has been deposited. Any amount over $500 will be available in 2 business days\n");
 
+            }
+            setTimeout(function() {atmSelection()}, 2000);
             break;
         case "4":
             console.log("Thank you for using the Senior Chief Banking System! \nHave a great day!\n ")
@@ -55,10 +74,11 @@ function promptFor(question, valid) {
       }
       isValid = valid(response);
     } while (response === "" || isValid === false || response === null);
+  
     return response;
   }
 
-  function numberValidation(input){
+  function choiceValidation(input){
       if(parseInt(input) > 0 && parseInt(input) < 5){
         return true;
       } else {
@@ -66,4 +86,13 @@ function promptFor(question, valid) {
       }
   }
 
+  function numberValidation(input){
+      if(parseInt(input) !== NaN){
+          return true;
+      } else {
+          return false;
+      }
+  }
+
   welcome();
+

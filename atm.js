@@ -1,17 +1,37 @@
 "use strict"
 
-const {PIN, balance} = require("./account.js");
+var {PIN, balance} = require("./account.js");
+var {money} = require("./wallet.js");
 
 function getBalance(){
     return balance;
 
 }
 
-function withdraw(){
-
+function withdraw(input){
+    let withdrawResponse;
+    if(input <= balance){
+        console.clear();
+        withdrawResponse = true;
+        balance -= input;
+        money += input;
+        return withdrawResponse;      
+    } else if(input > balance){
+        console.clear();
+        withdrawResponse = false;
+        return withdrawResponse
+    }
 }
 
-function deposit(){
+function deposit(input){
+    money -= input;
+    if(input <= 500){
+        balance += input;
+        return true;
+    } else {
+        balance += 500;
+        return false;
+    }
 
 }
 
