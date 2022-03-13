@@ -1,8 +1,7 @@
 "use strict"
 const prompt = require('prompt-sync')();
-var {validatePin, withdraw, getBalance, deposit} = require('./atm');
-var wallet = require('./wallet');
-var account = require('./account');
+const {validatePin, withdraw, getBalance, deposit} = require('./atm');
+const wallet = require('./wallet');
 let index;
 
 function welcome(){

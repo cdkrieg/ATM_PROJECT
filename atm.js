@@ -1,7 +1,7 @@
 "use strict"
 
-var account = require("./account");
-var wallet = require("./wallet");
+const account = require("./account");
+const wallet = require("./wallet");
 
 let count = 3;
 
