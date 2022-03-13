@@ -1,5 +1,22 @@
 "use strict"
 
-var wallet = {"money": 100};
+var person = [{"identity":123456,"money": 150},{"identity":234567, "money": 38}];
 
-module.exports.money = wallet.money;
+function getIndexOfPerson(input){
+    for(let i = 0; i < person[i].identity; i++){
+        if(input === person[i].identity){
+            return i;
+        }
+    }
+    if(input !== person[i].identity){
+        return null;
+    }
+}
+function getMoney(index){
+    return person[index].money;
+}
+
+module.exports  = {person}
+module.exports.getIndexOfPerson = getIndexOfPerson;
+module.exports.getMoney = getMoney;
+
